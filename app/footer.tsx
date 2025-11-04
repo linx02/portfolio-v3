@@ -70,12 +70,12 @@ export function Footer() {
   return (
     <footer className="mt-24 border-t border-zinc-100 px-0 py-4 dark:border-zinc-800">
       <div className="flex items-center justify-between">
-        <a href="https://github.com/ibelick/nim" target="_blank">
+        <div>
           <TextLoop className="text-xs text-zinc-500">
-            <span>© 2024 Nim.</span>
-            <span>Built with Motion-Primitives.</span>
+            <span>© 2025 Linus Elvius.</span>
+            <span>All rights reserved.</span>
           </TextLoop>
-        </a>
+        </div>
         <div className="text-xs text-zinc-400">
           <ThemeSwitch />
         </div>

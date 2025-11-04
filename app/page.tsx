@@ -18,7 +18,12 @@ import {
   BLOG_POSTS,
   EMAIL,
   SOCIAL_LINKS,
+  STUDIES,
+  CERTIFICATIONS,
+  CLIENTS,
+  REVIEWS,
 } from './data'
+import Image from 'next/image'
 
 const VARIANTS_CONTAINER = {
   hidden: { opacity: 0 },
@@ -58,7 +63,7 @@ function ProjectVideo({ src }: ProjectVideoProps) {
           autoPlay
           loop
           muted
-          className="aspect-video w-full cursor-zoom-in rounded-xl"
+          className="aspect-auto w-full cursor-zoom-in rounded-xl"
         />
       </MorphingDialogTrigger>
       <MorphingDialogContainer>
@@ -123,6 +128,28 @@ function MagneticSocialLink({
   )
 }
 
+function ClientLogo({
+  name,
+  link,
+  logo,
+}: {
+  name: string
+  link: string
+  logo: string
+}) {
+  return (
+    <a href={link} target="_blank">
+      <Image
+        alt={name}
+        src={logo}
+        width={150}
+        height={0}
+        className="transition-opacity duration-300 ease-in-out not-dark:invert hover:cursor-pointer hover:opacity-70"
+      />
+    </a>
+  )
+}
+
 export default function Personal() {
   return (
     <motion.main
@@ -137,8 +164,9 @@ export default function Personal() {
       >
         <div className="flex-1">
           <p className="text-zinc-600 dark:text-zinc-400">
-            Focused on creating intuitive and performant web experiences.
-            Bridging the gap between design and development.
+            Fullstack-utvecklare med erfarenhet av Python, Java och JavaScript /
+            TypeScript. Bygger SaaS-produkter, skräddarsydda system,
+            automatiseringar och webbplatser. Utforskar IT-säkerhet.
           </p>
         </div>
       </motion.section>
@@ -147,7 +175,25 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Selected Projects</h3>
+        <h3 className="mb-5 text-lg font-medium">Senaste kunder</h3>
+        <div className="grid grid-cols-2 items-center gap-6 sm:grid-cols-4">
+          {CLIENTS.map((client) => (
+            <div key={client.name} className="space-y-2">
+              <ClientLogo
+                name={client.name}
+                logo={client.logo}
+                link={client.link}
+              />
+            </div>
+          ))}
+        </div>
+      </motion.section>
+
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
+        <h3 className="mb-5 text-lg font-medium">Utvalda projekt</h3>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {PROJECTS.map((project) => (
             <div key={project.name} className="space-y-2">
@@ -161,7 +207,7 @@ export default function Personal() {
                   target="_blank"
                 >
                   {project.name}
-                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 dark:bg-zinc-50 transition-all duration-200 group-hover:max-w-full"></span>
+                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full dark:bg-zinc-50"></span>
                 </a>
                 <p className="text-base text-zinc-600 dark:text-zinc-400">
                   {project.description}
@@ -176,21 +222,60 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Work Experience</h3>
+        <h3 className="mb-5 text-lg font-medium">Kundreferenser</h3>
+        <div className="flex flex-col space-y-4">
+          {REVIEWS.map((review) => (
+            <div
+              className="relative bg-zinc-300/30 dark:bg-zinc-600/30"
+              key={review.name}
+            >
+              <div className="relative h-full w-full bg-white dark:bg-[#111111]">
+                <div className="relative flex w-full flex-col justify-between">
+                  <div>
+                    <h4 className="border-l-1 pl-4 font-normal italic dark:text-zinc-100">
+                      {review.content}
+                    </h4>
+                  </div>
+                  <div className="flex justify-between pt-4">
+                    <p className="">
+                      {review.name}
+                      {', '}
+                      <span className="text-zinc-600 dark:text-zinc-400">
+                        {review.role} hos{' '}
+                        <a
+                          className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-400"
+                          href={review.backlink}
+                          target="_blank"
+                        >
+                          {review.company}
+                          <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 text-zinc-900 transition-all duration-200 group-hover:max-w-full dark:bg-zinc-400"></span>
+                        </a>
+                      </span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </motion.section>
+
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
+        <h3 className="mb-5 text-lg font-medium">Arbetslivserfarenhet</h3>
         <div className="flex flex-col space-y-2">
           {WORK_EXPERIENCE.map((job) => (
-            <a
+            <div
               className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
-              href={job.link}
-              target="_blank"
-              rel="noopener noreferrer"
               key={job.id}
             >
               <Spotlight
                 className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
                 size={64}
               />
-              <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950">
+              <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-[#111111]">
                 <div className="relative flex w-full flex-row justify-between">
                   <div>
                     <h4 className="font-normal dark:text-zinc-100">
@@ -205,7 +290,7 @@ export default function Personal() {
                   </p>
                 </div>
               </div>
-            </a>
+            </div>
           ))}
         </div>
       </motion.section>
@@ -214,7 +299,77 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-3 text-lg font-medium">Blog</h3>
+        <h3 className="mb-5 text-lg font-medium">Certifieringar</h3>
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          {CERTIFICATIONS.map((cert) => (
+            <div key={cert.name} className="space-y-2">
+              <div className="relative rounded-2xl bg-zinc-50/40 p-1 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950/40 dark:ring-zinc-800/50">
+                <Image
+                  src={cert.image}
+                  width={300}
+                  height={300}
+                  className="rounded-xl"
+                  alt={cert.name}
+                />
+              </div>
+              <div className="px-1">
+                <a
+                  className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50"
+                  href={cert.link}
+                  target="_blank"
+                >
+                  {cert.name}
+                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 transition-all duration-200 group-hover:max-w-full dark:bg-zinc-50"></span>
+                </a>
+                <p className="text-base text-zinc-600 dark:text-zinc-400">
+                  {cert.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </motion.section>
+
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
+        <h3 className="mb-5 text-lg font-medium">Studier</h3>
+        <div className="flex flex-col space-y-2">
+          {STUDIES.map((study) => (
+            <div
+              className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
+              key={study.id}
+            >
+              <Spotlight
+                className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
+                size={64}
+              />
+              <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-[#111111]">
+                <div className="relative flex w-full flex-row justify-between">
+                  <div>
+                    <h4 className="font-normal dark:text-zinc-100">
+                      {study.title}
+                    </h4>
+                    <p className="text-zinc-500 dark:text-zinc-400">
+                      {study.school}
+                    </p>
+                  </div>
+                  <p className="text-zinc-600 dark:text-zinc-400">
+                    {study.start} - {study.end}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </motion.section>
+
+      {/* <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
+        <h3 className="mb-3 text-lg font-medium">Blogg</h3>
         <div className="flex flex-col space-y-0">
           <AnimatedBackground
             enableHover
@@ -244,15 +399,15 @@ export default function Personal() {
             ))}
           </AnimatedBackground>
         </div>
-      </motion.section>
+      </motion.section> */}
 
       <motion.section
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Connect</h3>
+        <h3 className="mb-5 text-lg font-medium">Connecta</h3>
         <p className="mb-5 text-zinc-600 dark:text-zinc-400">
-          Feel free to contact me at{' '}
+          Tveka inte att kontakta mig på{' '}
           <a className="underline dark:text-zinc-300" href={`mailto:${EMAIL}`}>
             {EMAIL}
           </a>
