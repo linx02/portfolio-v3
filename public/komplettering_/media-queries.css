@@ -1,0 +1,23 @@
+@media (max-width: 768px) {
+  div.items-center:nth-child(3) > div:nth-child(1) > button:nth-child(2) {
+    padding: 0.5rem !important;
+  }
+  div.items-center:nth-child(3) > div:nth-child(1)::after {
+    content: 'Denna körs bäst på dator!';
+    height: 100%;
+    inset: 0;
+    position: absolute;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    padding-top: 7.5rem;
+    color: #fff;
+    z-index: 9999;
+    pointer-events: none;
+    font-size: 1rem;
+    white-space: nowrap;
+  }
+}

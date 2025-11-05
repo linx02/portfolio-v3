@@ -208,12 +208,28 @@ export const CLIENTS: Client[] = [
 
 export const REVIEWS: Review[] = [
   {
+    name: 'Alexander Badreddine',
+    role: 'Ägare',
+    company: 'Qonsulta',
+    content:
+      'Jag har haft nöjet att arbeta med Linus och kan varmt rekommendera honom som utvecklare. Han är lyhörd, effektiv och har en imponerande förmåga att förstå kundens behov och omvandla dem till välfungerande lösningar. Linus levererar alltid med hög kvalitet och stor noggrannhet, samtidigt som han bidrar med en positiv och professionell attityd i teamet. En pålitlig och kompetent utvecklare som gör skillnad i varje projekt.',
+    backlink: 'https://qonsulta.se',
+  },
+  {
     name: 'Patrik Lindberg',
     role: 'VD',
     company: 'Guidelight Solutions',
     content:
       'Har löpande köpt tjänster av Linus och han är enormt kunnig med djup kunskap inom flera områden vilket jag uppskattar mycket då mina uppdrag omfattar en stor mängd olika förutsättningar. Alltid bra och personlig kommunikation och korta leveranstider. Rekommenderar honom varmt!',
     backlink: 'https://guidelight.se',
+  },
+  {
+    name: 'Sara Causey',
+    role: 'Ägare & Författare',
+    company: 'Causey Consulting',
+    content:
+      'I highly recommend Linus. He\'s a diligent, hard worker and he has good instincts to "think outside the box" when needed. I appreciate his dedication and persistence.',
+    backlink: 'https://causeyconsultingllc.com/',
   },
   {
     name: 'Peter Borneskog',
@@ -223,16 +239,8 @@ export const REVIEWS: Review[] = [
     backlink: 'https://alltitak.se',
   },
   {
-    name: 'Sara Causey',
-    role: 'VD',
-    company: 'Causey Consulting',
-    content:
-      'I highly recommend Linus. He\'s a diligent, hard worker and he has good instincts to "think outside the box" when needed. I appreciate his dedication and persistence.',
-    backlink: 'https://causeyconsultingllc.com/',
-  },
-  {
     name: 'Jonas Fahlén',
-    role: 'VD',
+    role: 'Delägare',
     company: 'Rodemreklam',
     content:
       'Har jobbat med Guidelight i många år och aldrig blivit besviken. Ett mindre bolag (som vi själva är) med ett enormt engagemang och man känner sig sedd som kund. Duktiga på att se från vårt perspektiv och alltid öppna och flexibla. Snabbheten har också alltid varit viktig för oss och där gör de oss heller inte besvikna. Linus är den vi har återkommande kontakt med och vi är otroligt nöjda med det lyft vi tillsammans har lyckats med på vår hemsida. Stort tack och fortsättning följer.',
