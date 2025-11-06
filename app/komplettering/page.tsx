@@ -7,7 +7,7 @@ import { Lightbulb, CircleAlert } from 'lucide-react'
 import '../../public/komplettering_/media-queries.css'
 import './Loader.css'
 import CodeRunner from '@/components/komplettering/CodeRunner'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Link from 'next/link'
 import Modal from '@/components/komplettering/Modal'
 
@@ -24,6 +24,15 @@ console.log(css)
   const [modalOpen, setModalOpen] = useState(false)
   const [modalContent, setModalContent] = useState('')
   const [modalTitle, setModalTitle] = useState('')
+  const [checkboxes, setCheckboxes] = useState<{ [key: string]: boolean }>({})
+  const [finished, setFinished] = useState(false)
+
+  useEffect(() => {
+    const allChecked =
+      Object.keys(checkboxes).length === 12 &&
+      Object.values(checkboxes).every((v) => v === true)
+    setFinished(allChecked)
+  }, [checkboxes])
 
   const handleRun = async () => {
     // Faktisk körning
@@ -182,34 +191,84 @@ console.log(css)
       />
 
       <main>
-        <h1 className="mb-4 font-medium">En interaktiv bedömningsprocess</h1>
-        <div className="relative mb-12 rounded-3xl border-1 border-zinc-700 p-4">
+        <div className="mb-8 flex space-x-2">
+          <Link href="/" className="underline">
+            Startsida
+          </Link>
+          <Link href="/komplettering/galleri" className="underline">
+            Galleri
+          </Link>
+        </div>
+        <h1 className="text-lg font-medium">En interaktiv bedömningsprocess</h1>
+        <p className="mb-4 text-yellow-600">
+          OBS! Kör i darkmode, switch finns längst ner på sidan
+        </p>
+
+        <div className="relative mb-12 rounded-2xl border-1 border-zinc-700 p-4">
           <div className="absolute top-[-10px] right-[50px]">
             <PulsingBall content="1" />
           </div>
-          {checklist.map((section) => (
-            <div key={section.title} className="mb-6">
-              <h2 className="mb-2 text-lg font-semibold">{section.title}</h2>
-              <ul>
-                {section.items.map((item, index) => (
-                  <div key={index} className="mb-2 flex items-baseline pl-4">
-                    <input type="checkbox" />
-                    {'html' in item ? (
-                      <li
-                        className="pl-2"
-                        dangerouslySetInnerHTML={{ __html: item.html ?? '' }}
-                      ></li>
-                    ) : (
-                      <li className="pl-2">
-                        {item.text}
-                        {'injectAfter' in item && item.injectAfter}
-                      </li>
-                    )}
-                  </div>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {!finished ? (
+            <>
+              {checklist.map((section) => (
+                <div key={section.title} className="mb-6">
+                  <h2 className="mb-2 text-lg font-semibold">
+                    {section.title}
+                  </h2>
+                  <ul>
+                    {section.items.map((item, index) => {
+                      const keyName =
+                        typeof item.text === 'string'
+                          ? item.text
+                          : `item-${index}`
+                      return (
+                        <div
+                          key={index}
+                          className="mb-2 flex items-baseline pl-4"
+                        >
+                          <input
+                            type="checkbox"
+                            checked={checkboxes[keyName] || false}
+                            onChange={(e) =>
+                              setCheckboxes({
+                                ...checkboxes,
+                                [keyName]: e.target.checked,
+                              })
+                            }
+                          />
+                          {'html' in item ? (
+                            <li
+                              className={
+                                checkboxes[keyName]
+                                  ? 'pl-2 line-through'
+                                  : 'pl-2'
+                              }
+                              dangerouslySetInnerHTML={{
+                                __html: item.html ?? '',
+                              }}
+                            ></li>
+                          ) : (
+                            <li className="pl-2">
+                              <span
+                                className={
+                                  checkboxes[keyName] ? 'line-through' : ''
+                                }
+                              >
+                                {item.text}
+                              </span>
+                              {'injectAfter' in item && item.injectAfter}
+                            </li>
+                          )}
+                        </div>
+                      )
+                    })}
+                  </ul>
+                </div>
+              ))}
+            </>
+          ) : (
+            <h2 className="text-lg font-semibold">Case closed!</h2>
+          )}
         </div>
         <div className="flex">
           <p id="checkpoint" className="items-center pr-2">
@@ -218,10 +277,10 @@ console.log(css)
           </p>
           <PulsingBall content="2" />
         </div>
-        <div className="flex items-center justify-center">
+        <div className="flex items-center justify-center" id="challenge">
           <ImpossibleButton />
         </div>
-        <div className="relative space-y-2 rounded-2xl border-1 border-zinc-700 p-8">
+        <div className="relative space-y-2 rounded-2xl border-1 border-zinc-700 p-4">
           <div className="absolute top-[-10px] right-[50px]">
             <PulsingBall content="3" />
           </div>

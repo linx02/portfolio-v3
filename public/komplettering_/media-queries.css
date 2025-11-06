@@ -1,8 +1,8 @@
 @media (max-width: 768px) {
-  div.items-center:nth-child(3) > div:nth-child(1) > button:nth-child(2) {
+  #challenge > div > button {
     padding: 0.5rem !important;
   }
-  div.items-center:nth-child(3) > div:nth-child(1)::after {
+  #challenge > div::after {
     content: 'Denna körs bäst på dator!';
     height: 100%;
     inset: 0;
