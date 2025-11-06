@@ -64,6 +64,7 @@ function ProjectVideo({ src }: ProjectVideoProps) {
           loop
           muted
           className="aspect-auto w-full cursor-zoom-in rounded-xl"
+          playsInline={true}
         />
       </MorphingDialogTrigger>
       <MorphingDialogContainer>
@@ -74,6 +75,7 @@ function ProjectVideo({ src }: ProjectVideoProps) {
             loop
             muted
             className="aspect-video h-[50vh] w-full rounded-xl md:h-[70vh]"
+            playsInline={true}
           />
         </MorphingDialogContent>
         <MorphingDialogClose
