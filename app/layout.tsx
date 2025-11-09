@@ -4,6 +4,7 @@ import './globals.css'
 import { Header } from './header'
 import { Footer } from './footer'
 import { ThemeProvider } from 'next-themes'
+import Script from 'next/script'
 
 export const viewport: Viewport = {
   width: 'device-width',
@@ -40,6 +41,62 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <Script
+          id="person-schema"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+        >
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Person',
+            name: 'Linus Elvius',
+            url: 'https://www.linuselvius.com/',
+            image: 'https://www.linuselvius.com/images/profile-real.png',
+            sameAs: [
+              'https://www.linkedin.com/in/linus-elvius-52b098266',
+              'https://github.com/linx02',
+            ],
+            jobTitle: 'Software Developer',
+            address: {
+              '@type': 'PostalAddress',
+              addressLocality: 'Stockholm',
+              addressCountry: 'Sweden',
+            },
+          })}
+        </Script>
+        <Script
+          id="website-schema"
+          type="application/ld+json"
+          strategy="beforeInteractive"
+        >
+          {JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            url: 'https://www.linuselvius.com/',
+            name: 'Linus Elvius - Frilansande utvecklare',
+          })}
+        </Script>
+
+        <Script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-98V68XZVDM"
+        ></Script>
+        <Script id="gtag-init" strategy="afterInteractive">
+          {`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){window.dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-98V68XZVDM');
+        `}
+        </Script>
+
+        <Script
+          id="cookieyes"
+          type="text/javascript"
+          src="https://cdn-cookieyes.com/client_data/4c5099f6d73194c729e1513b/script.js"
+        ></Script>
+      </head>
       <body
         className={`${geist.variable} ${geistMono.variable} bg-white tracking-tight antialiased dark:bg-[#111111]`}
       >
