@@ -232,6 +232,14 @@ export const REVIEWS: Review[] = [
     backlink: 'https://causeyconsultingllc.com/',
   },
   {
+    name: 'Tobias Uggelfors',
+    role: 'Ägare',
+    company: 'Rekway',
+    content:
+      'Linus har hjälpt oss bygga upp en sajt efter önskemål med stor precision och kunskap. Linus är även skicklig i att ta egna iniativ och komma med förbättringsförslag. Ser fram emot fortsatt arbete med Linus!',
+    backlink: 'https://rekway.se/',
+  },
+  {
     name: 'Peter Borneskog',
     role: 'VD',
     company: 'Allt i Tak Entreprenad',
