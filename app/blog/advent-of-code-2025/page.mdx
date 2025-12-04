@@ -1,0 +1,218 @@
+import AoC1 from '@/components/blog/AoC/AoC1'
+import AoC21 from '@/components/blog/AoC/AoC2.1'
+import AoC22 from '@/components/blog/AoC/AoC2.2'
+import AoC3 from '@/components/blog/AoC/AoC3'
+import AoC4 from '@/components/blog/AoC/AoC4'
+
+# Mina lösningar för Advent of Code 2025, med visualiseringar
+
+## Dag 1
+
+### Lösning
+
+```python
+with open("input.txt", "r") as f:
+    lines = [l.strip() for l in f.readlines()]
+
+def rotate(i, d, v):
+    c1 = 0
+    c2 = 0
+    while v != 0:
+        if d == 'L':
+            i -= 1
+            v -= 1
+            if i == -1: i = 99
+            if v == 0 and i == 0:
+                c1 += 1
+                break
+            if v != 0 and i == 0: c2 += 1
+        if d == 'R':
+            i += 1
+            v -= 1
+            if i == 100: i = 0
+            if v == 0 and i == 0:
+                c1 += 1
+                break
+            if v != 0 and i == 0: c2 += 1
+    return i, c1, c2
+
+
+def solve1():
+    i = 50
+    c = 0
+    for l in lines:
+        d = l[0]
+        v = int(l[1:])
+        i, c1, c2 = rotate(i, d, v)
+        c += c1
+    return c
+
+def solve2():
+    i = 50
+    c = 0
+    for l in lines:
+        d = l[0]
+        v = int(l[1:])
+        i, c1, c2 = rotate(i, d, v)
+        c += c1 + c2
+    return c
+
+print(solve1())
+print(solve2())
+```
+
+### Visualisering
+
+<AoC1 />
+
+## Dag 2
+
+### Lösning
+
+```python
+with open("input.txt", "r") as f:
+    data = f.read()
+
+def solve1():
+    s = 0
+    for r in data.strip().split(","):
+        r1, r2 = r.split("-")
+        for i in range(int(r1), int(r2) + 1):
+            if len(str(i)) % 2 != 0:
+                continue
+            i1, i2 = str(i)[:int(len(str(i)) / 2)], str(i)[int(len(str(i)) / 2):]
+            if i1 == i2:
+                s += i
+    return s
+
+def solve2():
+    s = 0
+    for r in data.strip().split(","):
+        r1, r2 = r.split("-")
+        for i in range(int(r1), int(r2) + 1):
+            is1 = str(i)
+            j = 1
+            while j <= int(len(is1) / 2):
+                p = is1[:j]
+                t = int(len(is1) / j)
+                is2 = p*t
+                if is1 == is2:
+                    s += i
+                    break
+                j += 1
+    return s
+
+print(solve1())
+print(solve2())
+```
+
+### Visualisering
+
+#### Del 1
+
+<AoC21 value="1188511885" />
+#### Del 2
+<AoC22 value="824824824" />
+
+## Dag 3
+
+### Lösning
+
+```python
+with open("input.txt", "r") as f:
+    banks = [l.strip() for l in f.readlines()]
+
+def scan(banks, n):
+    r = []
+    for b in banks:
+        sp = 0
+        bp = len(b) - n + 1
+        pos_arr = []
+        for i in range(n):
+            m = sp
+            for j in range(sp, bp):
+                if b[j] > b[m]: m = j
+            pos_arr.append(m)
+            bp += 1
+            sp = m + 1
+        r.append(''.join([str(b[v]) for v in pos_arr]))
+    return sum([int(v) for v in r])
+
+def solve1():
+    return scan(banks, 2)
+
+def solve2():
+    return scan(banks, 12)
+
+
+print(solve1())
+print(solve2())
+```
+
+### Visualisering
+
+<AoC3
+  bank="4346343235149456543445233353534244533333333343433259333326337334334333438332533343452433223352443324"
+  n={12}
+/>
+
+## Dag 4
+
+### Lösning
+
+```python
+with open("input.txt", "r") as f:
+    lines = [l.strip() for l in f.readlines()]
+
+def accessible(i, j):
+    global lines
+    p = [
+        (-1, 0),
+        (-1, -1),
+        (0, -1),
+        (1, -1),
+        (1, 0),
+        (1, 1),
+        (0, 1),
+        (-1, 1)
+    ]
+    c = 0
+    for pos in p:
+        x, y = pos
+        if j + x < 0 or i + y < 0 or j + x > len(lines[0]) - 1 or i + y > len(lines) - 1: continue
+        if lines[i + y][j + x] == '@': c += 1
+    return c < 4
+
+def scan(lines):
+    a = 0
+    for i, l in enumerate(lines):
+        for j, c in enumerate(l):
+            if c == '@':
+                if accessible(i, j):
+                    tmp = list(lines[i])
+                    tmp[j] = 'x'
+                    tmp = ''.join(tmp)
+                    lines[i] = tmp
+                    a += 1
+    return a, lines
+
+def solve1(lines):
+    a, lines = scan(lines)
+    return a
+
+def solve2(lines):
+    a = 0
+    while True:
+        tmp, lines = scan(lines)
+        a += tmp
+        if tmp == 0:
+            break
+
+    return a
+
+print(solve2(lines))
+```
+
+### Visualisering
+
+<AoC4 />
