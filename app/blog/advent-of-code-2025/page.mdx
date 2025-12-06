@@ -196,23 +196,154 @@ def scan(lines):
                     a += 1
     return a, lines
 
-def solve1(lines):
-    a, lines = scan(lines)
+def solve1():
+    global lines
+    a, lines_ = scan(lines)
     return a
 
-def solve2(lines):
+def solve2():
+    global lines
+    lines_ = lines
     a = 0
     while True:
-        tmp, lines = scan(lines)
+        tmp, lines_ = scan(lines)
         a += tmp
         if tmp == 0:
             break
 
     return a
 
-print(solve2(lines))
+print(solve1())
+print(solve2())
 ```
 
 ### Visualisering
 
 <AoC4 />
+
+## Dag 5
+
+### Lösning
+
+```python
+with open("input.txt", "r") as f:
+    switch = False
+    ids = []
+    ranges = []
+    for l in f.readlines():
+        if l == '\n': switch = True
+        if switch: ids.append(l.strip())
+        else: ranges.append(l.strip())
+    ids = ids[1:]
+
+def fresh(i, r):
+    l, h = r.split('-')
+    l = int(l)
+    h = int(h)
+    i = int(i)
+    return i >= l and i <= h
+
+def solve1():
+    global ranges
+    a = 0
+    for i in ids:
+        for r in ranges:
+            if fresh(i, r):
+                a += 1
+                break
+    return a
+
+def solve2():
+    global ranges
+    a = 0
+    ranges = sorted(ranges, key=lambda r: int(r.split('-')[0]))
+    m = 0
+    for r in ranges:
+        l, h = r.split('-')
+        l = int(l)
+        h = int(h)
+        if m > l:
+            l = m
+        if m > h:
+            continue
+        if m == l:
+            a -= 1
+        m = h
+        a += h-l+1
+    return a
+
+print(solve1())
+print(solve2())
+```
+
+### Visualisering
+
+-- Kommer snart --
+
+## Dag 6
+
+### Lösning
+
+```python
+with open('input.txt') as f:
+    lines = f.readlines()
+
+def solve1():
+    global lines
+    a = 0
+    lines_ = [l.strip() for l in lines]
+    problems = [[] for n in lines_[0].split()]
+
+    for i in range(len(lines_[0].split())):
+        for j in range(len(lines_)):
+            problems[i].append(lines_[j].split()[i])
+
+    for p in problems:
+        o = p[-1]
+        p = p[:-1]
+        e = o.join(p)
+        a += eval(e)
+    return a
+
+def solve2():
+    global lines
+    a = 0
+    problems = [[] for i in range(len(lines[0].split()))]
+    cols = []
+
+    for i in range(len(lines[0]) - 1):
+        col = []
+        for j in range(len(lines)):
+            col.append(lines[j][i])
+        cols.append(col)
+
+    cols = cols[::-1]
+
+    i = 0
+    eq = []
+    for j, col in enumerate(cols):
+        c = ''.join(col).strip()
+        if c == '': continue
+        if c[-1] in ['+', '*', '/', '-']:
+            o = c[-1]
+            c = c[:-1]
+            eq.append(c)
+            problems[i] = o.join(eq)
+            problems[i] = problems[i].strip()
+            eq = []
+            i += 1
+            continue
+        eq.append(c)
+
+    for p in problems:
+        a += eval(p)
+    return a
+
+
+print(solve1())
+print(solve2())
+```
+
+### Visualisering
+
+-- Kommer snart --
