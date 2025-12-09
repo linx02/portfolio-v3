@@ -240,7 +240,7 @@ export default function AoC1() {
                           } bg-white/80`}
                         />
                         {isMajor && (
-                          <div className="mt-1 text-center text-[9px] font-medium tracking-tight text-white/70">
+                          <div className="font-book mt-1 text-center text-[9px] tracking-tight text-white/70">
                             {n}
                           </div>
                         )}

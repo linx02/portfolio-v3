@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
 import { Header } from './header'
 import { Footer } from './footer'
@@ -23,16 +22,6 @@ export const metadata: Metadata = {
   description:
     'Hej! Jag är Linus Elvius, en frilansande utvecklare och säkerhetsentusiast. Jag hjälper företag att bygga säkra och effektiva digitala lösningar.',
 }
-
-const geist = Geist({
-  variable: '--font-geist',
-  subsets: ['latin'],
-})
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
-})
 
 export default function RootLayout({
   children,
@@ -97,9 +86,7 @@ export default function RootLayout({
           src="https://cdn-cookieyes.com/client_data/4c5099f6d73194c729e1513b/script.js"
         ></Script>
       </head>
-      <body
-        className={`${geist.variable} ${geistMono.variable} bg-white tracking-tight antialiased dark:bg-[#111111]`}
-      >
+      <body className={`bg-white tracking-tight antialiased dark:bg-[#111111]`}>
         <ThemeProvider
           enableSystem={true}
           attribute="class"

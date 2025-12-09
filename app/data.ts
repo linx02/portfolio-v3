@@ -107,25 +107,32 @@ export const CERTIFICATIONS: Certification[] = [
 
 export const WORK_EXPERIENCE: WorkExperience[] = [
   {
+    company: 'RISE Research Institutes of Sweden',
+    title: 'Praktikant, Cybersecurity',
+    start: '2025',
+    end: 'Nu',
+    id: 'work1',
+  },
+  {
     company: 'Frilans',
     title: 'Full Stack Utvecklare',
     start: '2024',
     end: 'Nu',
-    id: 'work1',
+    id: 'work2',
   },
   {
     company: 'Tech Agent',
     title: 'Full Stack Utvecklare',
     start: '2024',
     end: '2024',
-    id: 'work2',
+    id: 'work3',
   },
   {
     company: 'Luday',
     title: 'Full Stack Praktikant',
     start: '2023',
     end: '2024',
-    id: 'work3',
+    id: 'work4',
   },
 ]
 

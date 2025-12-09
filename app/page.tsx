@@ -177,7 +177,7 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Senaste kunder</h3>
+        <h3 className="font-book mb-5 text-lg">Senaste kunder</h3>
         <div className="grid grid-cols-2 items-center gap-6 sm:grid-cols-4">
           {CLIENTS.map((client) => (
             <div key={client.name} className="space-y-2">
@@ -195,7 +195,7 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Utvalda projekt</h3>
+        <h3 className="font-book mb-5 text-lg">Utvalda projekt</h3>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {PROJECTS.map((project) => (
             <div key={project.name} className="space-y-2">
@@ -204,7 +204,7 @@ export default function Personal() {
               </div>
               <div className="px-1">
                 <a
-                  className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50"
+                  className="font-book group relative inline-block text-zinc-900 dark:text-zinc-50"
                   href={project.link}
                   target="_blank"
                 >
@@ -224,7 +224,7 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Kundreferenser</h3>
+        <h3 className="font-book mb-5 text-lg">Kundreferenser</h3>
         <div className="flex flex-col space-y-4">
           {REVIEWS.map((review) => (
             <div
@@ -245,7 +245,7 @@ export default function Personal() {
                       <span className="text-zinc-600 dark:text-zinc-400">
                         {review.role} hos{' '}
                         <a
-                          className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-400"
+                          className="font-book group relative inline-block text-zinc-900 dark:text-zinc-400"
                           href={review.backlink}
                           target="_blank"
                         >
@@ -266,7 +266,7 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Arbetslivserfarenhet</h3>
+        <h3 className="font-book mb-5 text-lg">Arbetslivserfarenhet</h3>
         <div className="flex flex-col space-y-2">
           {WORK_EXPERIENCE.map((job) => (
             <div
@@ -301,7 +301,7 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Certifieringar</h3>
+        <h3 className="font-book mb-5 text-lg">Certifieringar</h3>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {CERTIFICATIONS.map((cert) => (
             <div key={cert.name} className="space-y-2">
@@ -316,7 +316,7 @@ export default function Personal() {
               </div>
               <div className="px-1">
                 <a
-                  className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50"
+                  className="font-book group relative inline-block text-zinc-900 dark:text-zinc-50"
                   href={cert.link}
                   target="_blank"
                 >
@@ -336,7 +336,7 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Studier</h3>
+        <h3 className="font-book mb-5 text-lg">Studier</h3>
         <div className="flex flex-col space-y-2">
           {STUDIES.map((study) => (
             <div
@@ -371,7 +371,7 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-3 text-lg font-medium">Blogg</h3>
+        <h3 className="font-book mb-3 text-lg">Blogg</h3>
         <div className="flex flex-col space-y-0">
           <AnimatedBackground
             enableHover
@@ -407,7 +407,7 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <h3 className="mb-5 text-lg font-medium">Connecta</h3>
+        <h3 className="font-book mb-5 text-lg">Connecta</h3>
         <p className="mb-5 text-zinc-600 dark:text-zinc-400">
           Tveka inte att kontakta mig på{' '}
           <a className="underline dark:text-zinc-300" href={`mailto:${EMAIL}`}>

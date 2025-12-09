@@ -14,7 +14,7 @@ export function Header() {
         className="mr-4 rounded-full"
       />
       <div>
-        <Link href="/" className="font-medium text-black dark:text-white">
+        <Link href="/" className="font-book text-black dark:text-white">
           Linus Elvius
         </Link>
         <TextEffect
